@@ -1,5 +1,15 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import httpProxy from 'http-proxy'
+
+const proxy = httpProxy.createProxyServer()
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
 
 export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+  proxy.web(req, res, {
+    target: 'http://nowhere:1234',
+  })
 }
