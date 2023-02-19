@@ -9,7 +9,7 @@ export const config = {
 }
 
 export default function handler(req, res) {
-  proxy.web(req, res, {
+  return proxy.web(req, res, {
     target: 'http://nowhere:1234',
   })
 }
